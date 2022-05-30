@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  mongoDB:
+    image: mongo:5.0
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - testing:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=blackfancer
+      - MONGO_INITDB_ROOT_PASSWORD=lopiin20
+
+  mginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - 8080:80
+      - 443:443
+    volumes:
+      - ./\site:/usr/share/nginx/html
+
+volumes:
+    testing:
